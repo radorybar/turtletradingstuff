@@ -1,0 +1,17 @@
+1;39;;;Function "GetLots" is not referenced and will be removed from exp-file
+1;39;;;Function "CloseAllPositions" is not referenced and will be removed from exp-file
+1;39;;;Function "getStrategyCurrencyByNumber" is not referenced and will be removed from exp-file
+1;39;;;Function "getHigherTimeframe" is not referenced and will be removed from exp-file
+1;39;;;Function "getLowerTimeframe" is not referenced and will be removed from exp-file
+1;39;;;Function "getLastFractalTime" is not referenced and will be removed from exp-file
+1;39;;;Function "getPreviousFractalTime" is not referenced and will be removed from exp-file
+1;39;;;Function "getLastFractalValue" is not referenced and will be removed from exp-file
+1;39;;;Function "getPreviousFractalValue" is not referenced and will be removed from exp-file
+1;39;;;Function "getNthFractalValue" is not referenced and will be removed from exp-file
+1;39;;;Function "getNthFractalTime" is not referenced and will be removed from exp-file
+1;39;;;Function "getLastZIGZAGTime" is not referenced and will be removed from exp-file
+1;39;;;Function "getPreviousZIGZAGTime" is not referenced and will be removed from exp-file
+1;39;;;Function "getLastZIGZAGValue" is not referenced and will be removed from exp-file
+1;39;;;Function "getPreviousZIGZAGValue" is not referenced and will be removed from exp-file
+1;39;;;Function "getNthZIGZAGValue" is not referenced and will be removed from exp-file
+1;39;;;Function "getNthZIGZAGTime" is not referenced and will be removed from exp-file
