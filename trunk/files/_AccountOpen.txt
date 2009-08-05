@@ -1,1 +1,2 @@
 Order	Open time	Type	Lots	Symbol	Open price	StopLoss	TakeProfit	Close time	Close price	Profit in points	Balance in points	Comment	Magic
+16481445	2009.08.05 22:37	buy	0.1	EURUSD	1.4419	1.4402	0	1970.01.01 00:00	1.4403	-16	653		0
