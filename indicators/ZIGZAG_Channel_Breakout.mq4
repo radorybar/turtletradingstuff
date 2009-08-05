@@ -7,7 +7,7 @@
 #property link      "http://www.metaquotes.net/"
 
 #property indicator_chart_window
-#property indicator_buffers 3
+#property indicator_buffers 5
 #property indicator_color1 Green
 #property indicator_color2 Blue
 #property indicator_color3 Red
@@ -36,7 +36,11 @@ int init()
    SetIndexStyle(1,DRAW_ARROW, EMPTY, 1);
    SetIndexArrow(1,159);
 
-   SetIndexStyle(2,DRAW_ZIGZAG);
+   SetIndexStyle(2,DRAW_SECTION);
+
+   SetIndexStyle(3,DRAW_ARROW);
+
+   SetIndexStyle(4,DRAW_ARROW);
 
 //---- indicator buffers mapping
    SetIndexBuffer(0,HighMapBufferBreakout);
@@ -44,6 +48,8 @@ int init()
    SetIndexBuffer(2,ZigzagBuffer);
    SetIndexBuffer(3,HighMapBuffer);
    SetIndexBuffer(4,LowMapBuffer);
+   SetIndexEmptyValue(0,0.0);
+   SetIndexEmptyValue(1,0.0);
    SetIndexEmptyValue(2,0.0);
 
 //---- indicator short name
@@ -219,13 +225,15 @@ int start()
 
    for (shift=Bars;shift>0;shift--)
    {
-      if (LowMapBuffer[shift] > 0.0 && ZigzagBuffer[shift] > 0.0)
+//      if (LowMapBuffer[shift] > 0.0 && ZigzagBuffer[shift] > 0.0)
+      if (LowMapBuffer[shift] > 0.0)
       {
          lastlowzigzag = LowMapBuffer[shift];
          lastlowposition = shift;
          lastincrease = 1000;
       }
-      if (HighMapBuffer[shift]>0.0 && ZigzagBuffer[shift] > 0.0)
+//      if (HighMapBuffer[shift]>0.0 && ZigzagBuffer[shift] > 0.0)
+      if (HighMapBuffer[shift]>0.0)
       {
          lasthighzigzag = HighMapBuffer[shift];
          lasthighposition = shift;
@@ -254,11 +262,25 @@ int start()
             lastdecrease = (lasthighzigzag - High[shift])/(lasthighposition - shift);
          }
       }
-
+/*
       if(Low[shift] > lastlowzigzag + lastincrease*(lastlowposition - shift))
          LowMapBufferBreakout[shift] = lastlowzigzag + lastincrease*(lastlowposition - shift);      
+      else
+         LowMapBufferBreakout[shift] = 0;
       if(High[shift] < lasthighzigzag - lastdecrease*(lasthighposition - shift))
          HighMapBufferBreakout[shift] = lasthighzigzag - lastdecrease*(lasthighposition - shift);            
+      else
+         HighMapBufferBreakout[shift] = 0;
+*/
+
+      if(Low[shift] < lastlowzigzag + lastincrease*(lastlowposition - shift))
+         LowMapBufferBreakout[shift] = lastlowzigzag + lastincrease*(lastlowposition - shift);      
+      else
+         LowMapBufferBreakout[shift] = 0;
+      if(High[shift] > lasthighzigzag - lastdecrease*(lasthighposition - shift))
+         HighMapBufferBreakout[shift] = lasthighzigzag - lastdecrease*(lasthighposition - shift);            
+      else
+         HighMapBufferBreakout[shift] = 0;
 
    }
    
