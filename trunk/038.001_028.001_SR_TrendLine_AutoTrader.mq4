@@ -148,6 +148,7 @@ string   _ACTION_LANGUAGE_COMMANDS[] =
 
    ORDER_SET_TP_POINTS,
 //usage: ORDER_SET_TP_POINTS value of new TP*ORDER_ID order id for new TP[*SEND_MAIL [text of mail][*SEND_SCREENSHOT [text for screenshot]]]
+
    ORDER_SET_SL_PRICE,
 //usage: ORDER_SET_SL_PRICE value of new SL*ORDER_ID order id for new SL[*SEND_MAIL [text of mail][*SEND_SCREENSHOT [text for screenshot]]]
 
@@ -212,8 +213,8 @@ int start()
       if(iTime(Symbol(), _AUTO_SCREENSHOT_PERIOD, 0) - _AUTO_SCREENSHOT_PERIOD*60 >= _LAST_AUTO_SCREENSHOT_TIME)
       {
          _LAST_AUTO_SCREENSHOT_TIME = iTime(Symbol(), _AUTO_SCREENSHOT_PERIOD, 0);
-         DeleteAllSreenshotFiles();
-         MakeScreenShot();
+         DeleteAllSreenshotFiles(StringConcatenate("", Period()));
+         MakeScreenShot(StringConcatenate("", Period()));
       }
       
       if(LASTASK == Ask && LASTBID == Bid)
@@ -493,11 +494,14 @@ bool ParseActions(string ActionString, string& ParsedAction[])
    if(i == _MAX_ACTION_LANGUAGE_ITEMS || !ValidAcionLanguageItem)
       result = false;
 
+/*
    if(_DEBUG)
-   {
-      Print("ParsedAction");
-      DebugStringArray(ParsedAction);
-   }
+      if(ArraySize(ParsedAction) > 0)
+      {
+         Print("ParsedAction");
+         DebugStringArray(ParsedAction);
+      }
+*/
 
    return(result);
 }
@@ -671,7 +675,7 @@ bool ExecuteActions(string ObjName, string ParsedAction[], bool AskBid)
             if(ContainsAction(ParsedAction, ORDER_SET_TP_PRICE, parsedtext))
                TP = StrToDouble(parsedtext);
 
-            OrderTicketNumber = OpenPosition(true, _DEFAULT_LOTS, 0, 0, _DEFAULT_SLIPPAGE, OrderID);
+            OrderTicketNumber = OpenPosition(true, _DEFAULT_LOTS, SL, TP, _DEFAULT_SLIPPAGE, OrderID);
             if(OrderTicketNumber < 0)
                ErrorCheckup();
             else
@@ -932,13 +936,13 @@ int OpenPosition(bool SHORTLONG, double LOTS, double STOPLOSS, double TAKEPROFIT
    if(SHORTLONG)
    {
       if(STOPLOSS > 0)
-      if(Ask + _MIN_STOPLOSS_DISTANCE*Point < STOPLOSS)
+      if(Ask + _MIN_STOPLOSS_DISTANCE*Point > STOPLOSS)
       {
          Print("Bad OrderOpen() STOPLOSS defined. Price Bid was: ", Ask, " and STOPLOSS was: ", STOPLOSS, " . STOPLOSS set to minimal value: ", Bid + _MIN_STOPLOSS_DISTANCE*Point);
          STOPLOSS = Ask + _MIN_STOPLOSS_DISTANCE*Point;
       }
       if(TAKEPROFIT > 0)
-      if(Bid - _MIN_TAKEPROFIT_DISTANCE*Point > TAKEPROFIT)
+      if(Bid - _MIN_TAKEPROFIT_DISTANCE*Point < TAKEPROFIT)
       {
          Print("Bad OrderOpen() TAKEPROFIT defined. Price Bid was: ", Bid, " and TAKEPROFIT was: ", TAKEPROFIT, " . TAKEPROFIT set to minimal value: ", Bid - _MIN_TAKEPROFIT_DISTANCE*Point);
          TAKEPROFIT = Bid - _MIN_TAKEPROFIT_DISTANCE*Point;
@@ -1291,11 +1295,14 @@ int ParseOrderIdFromActionString(string ParsedAction[])
 //   UsedOrderIDsInfo = StringConcatenate(UsedOrderIDsInfo, "\n", OrderID);
 }
 //------------------------------------------------------------------
-bool DeleteAllSreenshotFiles()
+bool DeleteAllSreenshotFiles(string Postfix = "")
 {
    int win32_DATA[255];
    
-   int handle = FindFirstFileA(TerminalPath() + "\experts\files\*" + Symbol() + ".gif",win32_DATA);
+   if(StringLen(Postfix) > 0)
+      Postfix = StringConcatenate("_", Postfix);
+
+   int handle = FindFirstFileA(TerminalPath() + "\experts\files\"" + Symbol() + Postfix + ".gif",win32_DATA);
 //   Print(TerminalPath() + "\experts\files\*" + Symbol() + ".gif");
 //   Print(bufferToString(win32_DATA));
    FileDelete(bufferToString(win32_DATA));
