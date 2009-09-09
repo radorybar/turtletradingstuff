@@ -1,24 +1,24 @@
 Initial deposit in points 	518
-Total net profit          	138
-Gross profit              	1876
-Gross loss                	-1738
-Profit factor             	1.07940161
-Expected payoff           	1.39393939
+Total net profit          	-254
+Gross profit              	1993
+Gross loss                	-2247
+Profit factor             	0.88696039
+Expected payoff           	-1.86764706
 Absolute drawdown         	518
-Maximal drawdown          	518	(100%)
+Maximal drawdown          	542	(67.2457%)
 Relative drawdown         	100%	(518)
-Trades total              	99
-Short positions(won %)    	57	(28.0702%)
-Long positions(won %)     	42	(28.5714%)
-Profit trades (% of total)	28	(28.2828%)
-Loss trades (% of total)  	71	(71.7172%)
+Trades total              	136
+Short positions(won %)    	82	(24.3902%)
+Long positions(won %)     	54	(24.0741%)
+Profit trades (% of total)	33	(24.2647%)
+Loss trades (% of total)  	103	(75.7353%)
 Largest profit trade      	318
 Largest loss trade        	-67
-Average profit trade      	67
-Average loss trade        	-24.47887324
+Average profit trade      	60.39393939
+Average loss trade        	-21.81553398
 Average consecutive wins  	1
-Average consecutive losses	3
+Average consecutive losses	4
 Maximum consecutive wins (profit in points)	3	(175)
-Maximum consecutive losses (loss in points)	13	(-330)
+Maximum consecutive losses (loss in points)	15	(-230)
 Maximal consecutive profit (count of wins) 	318	(1)
 Maximal consecutive loss (count of losses) 	-359	(9)
