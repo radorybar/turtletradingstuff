@@ -1,0 +1,9 @@
+1;39;;;Function "getHigherTimeframe" is not referenced and will be removed from exp-file
+1;39;;;Function "getLowerTimeframe" is not referenced and will be removed from exp-file
+1;39;;;Function "getPreviousZIGZAGTime" is not referenced and will be removed from exp-file
+1;39;;;Function "getLastZIGZAGValue" is not referenced and will be removed from exp-file
+1;39;;;Function "getPreviousZIGZAGValue" is not referenced and will be removed from exp-file
+1;39;;;Function "getNthZIGZAGValue" is not referenced and will be removed from exp-file
+1;39;;;Function "CloseAllPositions" is not referenced and will be removed from exp-file
+1;39;;;Function "GetLots" is not referenced and will be removed from exp-file
+1;39;;;Function "OpenNewBar" is not referenced and will be removed from exp-file

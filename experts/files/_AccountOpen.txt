@@ -1,0 +1,1 @@
+Order	Open time	Type	Lots	Symbol	Open price	StopLoss	TakeProfit	Close time	Close price	Profit in points	Balance in points	Comment	Magic
